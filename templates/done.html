@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="container-fluid">
+        <nav class="navbar navbar-dark bg-primary">
+            <div class="text-center">
+                <h2>Тестовое задание</h2>
+            </div>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="container">
+                {% for i in json_list %}
+                    {{ i.id }} {{ i.field }} {{ i.data }}<br>
+                {% endfor %}
+            </div>
+        </div>
+    </div><br>
+    <div class="col-md-3">
+        <div class="container">
+            <a href="/" class="btn btn-info" role="button">Main page</a>
+        </div>
+    </div>
+{% endblock %}

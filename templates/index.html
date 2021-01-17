@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="container-fluid">
+        <nav class="navbar navbar-dark bg-primary">
+            <div class="text-center">
+                <h2>Тестовое задание</h2>
+            </div>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <div class="container">
+                <button class="add_input, btn btn-primary" onclick="add()">Add field</button>
+            </div><br>
+            <div class="container">
+                <a href="{% url 'done' %}" class="btn btn-primary">Forms data</a>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="container">
+                <form action="/" method="post" id="form">
+                    {% csrf_token %}
+                    <div class="form-group" id="form-group">
+                        <p>
+                            {{ form.as_p }}
+                        </p>
+                    </div>
+                    <button type="submit" class="btn btn-success" id="button-submit">Submit</button>
+                </form>
+            </div>
+        </div>
+        <script>
+        let counter = 1;
+        function add(){
+            let input = document.createElement('input');
+            let label = document.createElement('label');
+
+            input.name = 'name' + counter;
+            input.type = "text";
+            input.id = "name" + counter;
+            label.setAttribute("for","name" + counter);
+            label.innerHTML = "name" + counter + ":";
+
+            document.getElementById('form-group').appendChild(label);
+            document.getElementById('form-group').appendChild(input);
+
+            counter++;
+        }
+        </script>
+    </div>
+{% endblock %}
